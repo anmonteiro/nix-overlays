@@ -339,6 +339,8 @@ websocketafPackages // {
 
   reenv = callPackage ./reenv { ocamlPackages = oself; };
 
+  ringo = callPackage ./tezos/ringo.nix { ocamlPackages = oself; };
+
   rosetta = callPackage ./rosetta { ocamlPackages = oself; };
 
   sedlex_3 = osuper.sedlex_2.overrideAttrs (_: {
