@@ -72,6 +72,10 @@ let
     ocamlPackages = oself;
   };
 
+  ringoPackages = callPackage ./tezos/ringo.nix {
+    ocamlPackages = oself;
+  };
+
   sessionPackages = callPackage ./session {
     ocamlPackages = oself;
   };
@@ -97,6 +101,7 @@ oidcPackages //
 reasonPackages //
 redisPackages //
 restoPackages //
+ringoPackages //
 sessionPackages //
 websocketafPackages // {
   ansiterminal = buildDunePackage {
@@ -343,8 +348,6 @@ websocketafPackages // {
   redemon = callPackage ./redemon { ocamlPackages = oself; };
 
   reenv = callPackage ./reenv { ocamlPackages = oself; };
-
-  ringo = callPackage ./tezos/ringo.nix { ocamlPackages = oself; };
 
   rosetta = callPackage ./rosetta { ocamlPackages = oself; };
 
