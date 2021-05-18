@@ -361,6 +361,8 @@ websocketafPackages // {
 
   ptime = (osuper.ptime.override { jsooSupport = false; });
 
+  pyml = callPackage ./tezos/pyml.nix { ocamlPackages = oself; };
+
   redemon = callPackage ./redemon { ocamlPackages = oself; };
 
   reenv = callPackage ./reenv { ocamlPackages = oself; };
@@ -392,6 +394,8 @@ websocketafPackages // {
     buildInputs = o.buildInputs ++ [ dune-configurator ];
     propagatedBuildInputs = [ openssl.dev ];
   });
+
+  stdcompat = callPackage ./stdcompat { ocamlPackages = oself; };
 
   subscriptions-transport-ws = callPackage ./subscriptions-transport-ws {
     ocamlPackages = oself;
