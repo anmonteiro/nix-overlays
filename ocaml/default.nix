@@ -231,6 +231,8 @@ websocketafPackages // {
 
   flow_parser = callPackage ./flow_parser { ocamlPackages = oself; };
 
+  genspio = callPackage ./genspio { ocamlPackages = oself; };
+
   graphql_ppx = callPackage ./graphql_ppx {
     ocamlPackages = oself;
   };
