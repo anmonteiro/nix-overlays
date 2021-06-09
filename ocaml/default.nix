@@ -457,4 +457,9 @@ websocketafPackages // {
   });
 
   yuscii = callPackage ./yuscii { ocamlPackages = oself; };
+
+  zarith = osuper.zarith.overrideAttrs
+    (o: {
+      version = "1.11";
+    });
 }
