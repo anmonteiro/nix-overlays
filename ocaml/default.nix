@@ -9,11 +9,20 @@ let
     ocamlVersion = osuper.ocaml.version;
   };
 
+  bls12-381Packages = callPackage ./tezos/bls12-381.nix {
+    ocamlPackages = oself;
+    ocamlVersion = osuper.ocaml.version;
+  };
+
   cookiePackages = callPackage ./cookie {
     ocamlPackages = oself;
   };
 
   dataloader-packages = callPackage ./dataloader {
+    ocamlPackages = oself;
+  };
+
+  ffPackages = callPackage ./tezos/ff.nix {
     ocamlPackages = oself;
   };
 
@@ -31,11 +40,23 @@ let
     ocamlVersion = osuper.ocaml.version;
   };
 
+  haclStarPackages = callPackage ./tezos/hacl-star.nix {
+    ocamlPackages = oself;
+  };
+
   janestreetPackages = callPackage ./janestreet {
     ocamlPackages = oself;
   };
 
+  jsonDataEncodingPackages = callPackage ./tezos/json-data-encoding.nix {
+    ocamlPackages = oself;
+  };
+
   lambda-runtime-packages = callPackage ./lambda-runtime {
+    ocamlPackages = oself;
+  };
+
+  lwtUtilPackages = callPackage ./tezos/lwt-utils.nix {
     ocamlPackages = oself;
   };
 
@@ -60,6 +81,14 @@ let
     ocamlPackages = oself;
   };
 
+  restoPackages = callPackage ./resto {
+    ocamlPackages = oself;
+  };
+
+  ringoPackages = callPackage ./tezos/ringo.nix {
+    ocamlPackages = oself;
+  };
+
   sessionPackages = callPackage ./session {
     ocamlPackages = oself;
   };
@@ -71,18 +100,25 @@ let
 
 in
 archiPackages //
+bls12-381Packages //
 cookiePackages //
 dataloader-packages //
-graphqlPackages //
+ffPackages //
 glutenPackages //
+graphqlPackages //
 h2Packages //
+haclStarPackages //
 janestreetPackages //
+jsonDataEncodingPackages //
 lambda-runtime-packages //
+lwtUtilPackages //
 morphPackages //
 multicorePackages //
 oidcPackages //
 reasonPackages //
 redisPackages //
+restoPackages //
+ringoPackages //
 sessionPackages //
 websocketafPackages // {
   ansiterminal = buildDunePackage {
@@ -105,6 +141,8 @@ websocketafPackages // {
     };
     doCheck = false;
   });
+
+  bisect_ppx = callPackage ./bisect_ppx { ocamlPackages = oself; };
 
   calendar = callPackage ./calendar { ocamlPackages = oself; };
 
@@ -140,6 +178,9 @@ websocketafPackages // {
       sha256 = "1sd74bcsln51bnz11c82v6h6fv23dczfyfqqvv9rxa9wp4p3qrs1";
     };
   });
+
+
+  data-encoding = callPackage ./tezos/data-encoding.nix { ocamlPackages = oself; };
 
   decimal = callPackage ./decimal { ocamlPackages = oself; };
 
@@ -193,6 +234,8 @@ websocketafPackages // {
 
   flow_parser = callPackage ./flow_parser { ocamlPackages = oself; };
 
+  genspio = callPackage ./genspio { ocamlPackages = oself; };
+
   graphql_ppx = callPackage ./graphql_ppx {
     ocamlPackages = oself;
   };
@@ -200,6 +243,8 @@ websocketafPackages // {
   hidapi = osuper.hidapi.overrideAttrs (o: {
     buildInputs = o.buildInputs ++ [ dune-configurator ];
   });
+
+  hashcons = callPackage ./hashcons { ocamlPackages = oself; };
 
   httpaf = callPackage ./httpaf { ocamlPackages = oself; };
   httpaf-lwt = callPackage ./httpaf/lwt.nix { ocamlPackages = oself; };
@@ -295,11 +340,17 @@ websocketafPackages // {
     buildInputs = o.buildInputs ++ [ dune-configurator ];
   });
 
+  ocaml-migrate-types = callPackage ./ocaml-migrate-types { ocamlPackages = oself; };
+
+  odoc = callPackage ./odoc { ocamlPackages = oself; };
+
   pg_query = callPackage ./pg_query { ocamlPackages = oself; };
 
   piaf = callPackage ./piaf { ocamlPackages = oself; };
 
   ppx_jsx_embed = callPackage ./ppx_jsx_embed { ocamlPackages = oself; };
+
+  ppx_let_locs = callPackage ./ppx_let_locs { ocamlPackages = oself; };
 
   ppx_rapper = callPackage ./ppx_rapper { ocamlPackages = oself; };
   ppx_rapper_async = callPackage ./ppx_rapper/async.nix { ocamlPackages = oself; };
@@ -323,11 +374,15 @@ websocketafPackages // {
 
   ptime = (osuper.ptime.override { jsooSupport = false; });
 
+  pyml = callPackage ./pyml { ocamlPackages = oself; };
+
   redemon = callPackage ./redemon { ocamlPackages = oself; };
 
   reenv = callPackage ./reenv { ocamlPackages = oself; };
 
   rosetta = callPackage ./rosetta { ocamlPackages = oself; };
+
+  secp256k1-internal = callPackage ./tezos/secp256k1-internal.nix { ocamlPackages = oself; };
 
   sedlex_3 = osuper.sedlex_2.overrideAttrs (_: {
     src = builtins.fetchurl {
@@ -353,6 +408,8 @@ websocketafPackages // {
     propagatedBuildInputs = [ openssl.dev ];
   });
 
+  stdcompat = callPackage ./stdcompat { ocamlPackages = oself; };
+
   subscriptions-transport-ws = callPackage ./subscriptions-transport-ws {
     ocamlPackages = oself;
   };
@@ -366,6 +423,11 @@ websocketafPackages // {
     };
     propagatedBuildInputs = [ xmlm uri ptime ];
   };
+
+  tar = callPackage ./tar { ocamlPackages = oself; };
+  tar-unix = callPackage ./tar-unix { ocamlPackages = oself; };
+
+  tezos-rust-libs = callPackage ./tezos/tezos-rust-libs.nix { ocamlPackages = oself; };
 
   tyxml-jsx = callPackage ./tyxml/jsx.nix { ocamlPackages = oself; };
   tyxml-ppx = callPackage ./tyxml/ppx.nix { ocamlPackages = oself; };
@@ -398,4 +460,6 @@ websocketafPackages // {
   });
 
   yuscii = callPackage ./yuscii { ocamlPackages = oself; };
+
+  zarith1_11 = callPackage ./zarith1_11 { ocamlPackages = oself; };
 }
